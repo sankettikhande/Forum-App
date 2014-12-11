@@ -1,0 +1,18 @@
+<p> <%= link_to 'Forums Index', forums_path %> </p>
+<h1> Listing of <%= @forum.title %> Topics </h1>
+<p><%= link_to 'Create Topic', new_forum_topic_path(@forum) %></p>
+<div>
+  <% @forum.topics.each do |topic| %>
+  <li>
+  <%= link_to topic.subject, [@forum, topic]%>
+  <%= social_share_button_tag(topic.subject, :url => forum_topic_url(@forum, topic )) %></td>
+  </li>
+  <%end%>
+</div>
+
+<div>
+	<%if current_user.is_admin %>
+		<%= link_to 'Edit', edit_forum_path(@forum) %> |
+	<% end %>
+	<%= link_to 'Back', forums_path %>
+</div>

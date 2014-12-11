@@ -1,0 +1,16 @@
+<p><%= link_to 'New Forum', new_forum_path %></p>
+
+<h1>Listing forums</h1>
+
+
+<% @forums.each do |forum| %>
+  <li>
+    <%= link_to forum.title, forum %>
+    <%if current_user.is_admin %> |
+      <%= link_to 'Edit', edit_forum_path(forum) %> 
+      <%= link_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' } %>
+      
+    <%end%>
+  </li>
+<% end %>
+

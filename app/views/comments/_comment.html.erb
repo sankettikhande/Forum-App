@@ -1,0 +1,6 @@
+<tr id='comment_<%=@comment.id%>'>
+<td><%=@comment.body%></td><td>
+<%=link_to 'Delete',forum_topic_comment_path(@comment.topic.forum, @comment.topic,@comment),{method: :delete} %></td>
+<td>
+<%= social_share_button_tag(@comment.body, :url => (forum_topic_comment_path(@comment.topic.forum, @comment.topic,@comment) +'#comment_'+@comment.id.to_s )) %></td>
+</tr>

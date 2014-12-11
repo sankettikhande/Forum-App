@@ -1,0 +1,20 @@
+<p><%= link_to 'Add Comment', new_forum_topic_comment_path(@topic.forum,@topic),{remote: true} %></p> </br>
+<div id="comment_form"></div>
+<h3>Listing Comments Of <%=@topic.subject%></h3>
+
+<table class="table table-striped">
+  <thead>
+  <tr><th>Comments</th>
+    
+  </thead>
+  <tbody id="comments_list">
+<% @comments.each_with_index do |comment,index|%>
+<tr id="comment_<%=comment.id%>">
+<td><%=comment.body %> </td>
+<td><%=link_to 'Delete',forum_topic_comment_path(@topic.forum, @topic,comment),{method: :delete} %> </td>
+<td>
+<%= social_share_button_tag(comment.body, :url => (forum_topic_comment_url(@topic.forum, @topic,comment) +'#comment_'+comment.id.to_s )) %></td>
+</tr>
+<%end%>
+</tbody>
+</table>
