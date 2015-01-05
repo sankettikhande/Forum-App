@@ -10,7 +10,16 @@
   <tbody>
     <% @topics.each do |topic| %>
       <tr>
-        <td> <%= topic.subject %></td>
+        <td> <%= topic.subject %>
+      Like Count: [<%= Like.get_like_count(topic.class,topic.id) %>]
+      <%= link_to "like it!!", like_path(:resource_name => topic.class,
+                                         :resource_id   => topic.id),
+                                         :method => :post %>
+     <%= link_to "unlike it!!", unlike_path(
+                                        :resource_name => topic.class,
+                                        :resource_id   => topic.id),
+                                        :method => :delete %>
+    </td>
         <td><%= link_to 'Show', [@forum, topic] %></td>
         <td><%= social_share_button_tag(topic.subject, :url => forum_topic_url(topic.forum, topic )) %></td>
       </tr>

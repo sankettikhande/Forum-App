@@ -57,6 +57,12 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
+    keytar (1.5.3)
+      activesupport
+    likeable (0.1.2)
+      activesupport
+      keytar (>= 1.5.2)
+      redis
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -87,6 +93,7 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    redis (3.2.0)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
     sass (3.2.19)
@@ -134,6 +141,7 @@ DEPENDENCIES
   friendly_id (~> 5.0.0)
   jbuilder (~> 2.0)
   jquery-rails
+  likeable
   mysql2
   rails (= 4.1.4)
   sass-rails (~> 4.0.3)

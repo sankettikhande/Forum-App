@@ -8,9 +8,21 @@
     
   </thead>
   <tbody id="comments_list">
-<% @comments.each_with_index do |comment,index|%>
+<% @comments.each do |comment|%>
 <tr id="comment_<%=comment.id%>">
-<td><%=comment.body %> </td>
+<td><%=comment.body %>
+Like Count: [<%= Like.get_like_count(comment.class,comment.id) %>]
+      <%= link_to "like it!!", like_path(:resource_name => comment.class,
+                                         :resource_id   => comment.id),
+                                         :method => :post %>
+     <%= link_to "unlike it!!", unlike_path(
+                                        :resource_name => comment.class,
+                                        :resource_id   => comment.id),
+                                        :method => :delete %>
+
+
+
+ </td>
 <td><%=link_to 'Delete',forum_topic_comment_path(@topic.forum, @topic,comment),{method: :delete} %> </td>
 <td>
 <%= social_share_button_tag(comment.body, :url => (forum_topic_comment_url(@topic.forum, @topic,comment) +'#comment_'+comment.id.to_s )) %></td>

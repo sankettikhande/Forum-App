@@ -6,9 +6,20 @@
 <% @forums.each do |forum| %>
   <li>
     <%= link_to forum.title, forum %>
+
+    <p>      
+      Like Count: [<%= Like.get_like_count(forum.class,forum.id) %>]
+      <%= link_to "like it!!", like_path(:resource_name => forum.class,
+                                         :resource_id   => forum.id),
+                                         :method => :post %>
+     <%= link_to "unlike it!!", unlike_path(
+                                        :resource_name => forum.class,
+                                        :resource_id   => forum.id),
+                                        :method => :delete %>
+    </p>
     <%if current_user.is_admin %> |
       <%= link_to 'Edit', edit_forum_path(forum) %> 
-      <%= link_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' } %> 
       
     <%end%>
   </li>

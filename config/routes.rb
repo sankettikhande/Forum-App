@@ -12,7 +12,8 @@ Rails.application.routes.draw do
     end        
   end
 
-
+  post 'likes/:resource_name/:resource_id' => 'likes#create', :as => 'like'
+  delete 'likes/:resource_name/:resource_id' => 'likes#destroy', :as => 'unlike'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
